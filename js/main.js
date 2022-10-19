@@ -2,6 +2,9 @@
 
 const form = document.querySelector('.js-new-form');
 form.classList.remove('collapsed');
+console.log(from);
+
+
 
 const list = document.querySelector('.js-list');
 
