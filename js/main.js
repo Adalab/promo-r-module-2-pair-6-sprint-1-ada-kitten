@@ -7,8 +7,14 @@ const plus=document.querySelector('.js-plus');
 
 plus.addEventListener('click',(event) => {
   event.defaultPrevented();
-  
+  if (form.classList.contains('collapsed')) {
+    form.classList.remove('collapsed');
+  } else {
+    form.classList.add('collapsed');
+  }
 })
+
+
 
 
 const list = document.querySelector('.js-list');
@@ -30,6 +36,11 @@ const kittenThreeImage= "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcne
 const kittenThreeName="Cielo";
 const kittenThreeRace="British Shorthair";
 const kittenThreeDesc="Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!";
+
+
+const input_search_desc = document.querySelector('.js_in_search_desc');
+input_search_desc.value = '';
+const descrSearchText = input_search_desc.value;
 
 
 
@@ -71,4 +82,17 @@ const kittenThree = ` <li class="card">
 </p>
 </li> `;
 
-list.innerHTML= kittenOne + kittenTwo + kittenThree;
+
+// list.innerHTML= kittenOne + kittenTwo + kittenThree;
+
+if( kittenOneDesc.includes(descrSearchText) ) {
+  list.innerHTML= kittenOne;
+  }
+  
+if( kittenTwoDesc.includes(descrSearchText) ) {
+  list.innerHTML+= kittenTwo;
+  }
+if( kittenThreeDesc.includes(descrSearchText) ) {
+    list.innerHTML+= kittenThree;
+  }
+      
