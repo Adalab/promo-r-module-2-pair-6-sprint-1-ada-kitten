@@ -5,15 +5,41 @@ form.classList.remove('collapsed');
 
 const plus=document.querySelector('.js-plus');
 
+const add=document.querySelector('.js-btn-add');
+
+const inputDesc = document.querySelector('.js-input-desc');
+const inputPhoto = document.querySelector('.js-input-photo');
+const inputName = document.querySelector('.js-input-name');
+const labelMesageError = document.querySelector('.js-label-error');
+
+
+add.addEventListener('click', (event) => {
+  event.preventDefault();
+  const valueDesc = inputDesc.value;
+  const valuePhoto = inputPhoto.value;
+  const valueName = inputName.value;
+
+  if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+    labelMesageError.innerHTML='Debe rellenar todos los valores'
+  } else {
+    labelMesageError.innerHTML=''
+  };
+})
+
+
 plus.addEventListener('click',(event) => {
-  event.defaultPrevented();
+  event.preventDefault();
   if (form.classList.contains('collapsed')) {
     form.classList.remove('collapsed');
   } else {
     form.classList.add('collapsed');
   }
-})
+});
 
+add.addEventListener('click', (event) => {
+  event.preventDefault();
+
+})
 
 
 
