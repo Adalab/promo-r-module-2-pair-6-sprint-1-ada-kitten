@@ -3,6 +3,14 @@
 const form = document.querySelector('.js-new-form');
 form.classList.remove('collapsed');
 
+const plus=document.querySelector('.js-plus');
+
+plus.addEventListener('click',(event) => {
+  event.defaultPrevented();
+  
+})
+
+
 const list = document.querySelector('.js-list');
 
 
