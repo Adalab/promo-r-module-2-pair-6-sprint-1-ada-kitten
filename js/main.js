@@ -2,15 +2,23 @@
 
 const form = document.querySelector('.js-new-form');
 form.classList.remove('collapsed');
-
 const plus=document.querySelector('.js-plus');
-
 const add=document.querySelector('.js-btn-add');
 
 const inputDesc = document.querySelector('.js-input-desc');
 const inputPhoto = document.querySelector('.js-input-photo');
 const inputName = document.querySelector('.js-input-name');
 const labelMesageError = document.querySelector('.js-label-error');
+const inputRace = document.querySelector ('.js-input-race');
+
+
+const search = document.querySelector('.js-search');
+const searchDesc = document.querySelector('.js-desc');
+const searchRace = document.querySelector('.js-race');
+const searchError = document.querySelector ('.js-search-error');
+const btnCancel = document.querySelector ('.js-btn-cancel');
+
+
 
 
 add.addEventListener('click', (event) => {
@@ -18,13 +26,28 @@ add.addEventListener('click', (event) => {
   const valueDesc = inputDesc.value;
   const valuePhoto = inputPhoto.value;
   const valueName = inputName.value;
+  const valueRace = inputRace.value;
+  
 
   if (valueDesc === '' || valuePhoto === '' || valueName === '') {
     labelMesageError.innerHTML='Debe rellenar todos los valores'
   } else {
     labelMesageError.innerHTML=''
   };
-})
+});
+
+search.addEventListener('click', (event)  => {
+  event.preventDefault();
+  const descValue = searchDesc.value;
+  const raceValue = searchRace.value;
+
+  if ( descValue === '' || raceValue === '' ){
+    searchError.innerHTML = 'Debe rellenar todos los valores'
+  } else {
+    searchError.innerHTML = '' 
+  };
+});
+
 
 
 plus.addEventListener('click',(event) => {
@@ -35,6 +58,17 @@ plus.addEventListener('click',(event) => {
     form.classList.add('collapsed');
   }
 });
+
+btnCancel.addEventListener ('click' , (event) => {
+  event.preventDefault();
+  
+  inputDesc.value = ''
+  inputPhoto.value = ''
+  inputName.value = ''
+  inputRace.value = ''
+  form.classList.add('collapsed');
+
+})
 
 add.addEventListener('click', (event) => {
   event.preventDefault();

@@ -36,12 +36,12 @@
       <h2 class="title">¿Agregamos un nuevo gatito a Adalab?</h2>
       <form class="form">
         <input class="input js-input-photo" type="text" placeholder="Url de la foto" />
-        <input class="input js-input-name" type="text" placeholder="Nombre"/>
-        <input class="input" type="text" placeholder="Raza" />
+        <input class="input js-input-name" type="text" placeholder="Nombre" />
+        <input class="input js-input-race" type="text" placeholder="Raza" />
         <input class="input js_in_search_desc js-input-desc" type="text" placeholder="Descripción" />
         <label class=""></label>
         <button class="button js-btn-add">Añadir</button>
-        <button class="button-cancel">Cancelar</button>
+        <button class="button-cancel  js-btn-cancel">Cancelar</button>
       </form>
       <p class="js-label-error"></p>
     </section>
@@ -54,10 +54,11 @@
     <section class="search">
       <h2 class="title">Filtrar / Buscar</h2>
       <form class="form">
-        <input class="input" type="text" placeholder="Descripción" />
-        <input class="input" type="select" name="raza" placeholder="Raza" id="raza" />
+        <input class="js-desc input" type="text" placeholder="Descripción" />
+        <input class="js-race input" type="select" name="raza" placeholder="Raza" id="raza" />
 
-        <button class="button">Buscar</button>
+        <button class="js-search button">Buscar</button>
+        <p class="js-search-error"></p>
       </form>
     </section>
 
