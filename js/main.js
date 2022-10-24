@@ -82,6 +82,11 @@ add.addEventListener('click', (event) => {
   event.preventDefault();
 
 })
+function renderKitten(url, desc, name ,race) {
+  // crear un gato estandar donde metamos los parametros que escriba el usuario .value en cada parte del html que metamos nuevo? 
+}
+
+function addNewKitten ()
 
 
 
