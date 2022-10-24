@@ -48,16 +48,24 @@ search.addEventListener('click', (event)  => {
   };
 });
 
+function showNewCatForm() {
+  form.classList.remove('collapsed');
+}
+function hideNewCatForm() {
+  form.classList.add('collapsed');
+}
 
+plus.addEventListener('click',handleClickNewCatForm);
 
-plus.addEventListener('click',(event) => {
+function handleClickNewCatForm(event) {
   event.preventDefault();
   if (form.classList.contains('collapsed')) {
-    form.classList.remove('collapsed');
+    showNewCatForm();
   } else {
-    form.classList.add('collapsed');
+    hideNewCatForm();
   }
-});
+}
+
 
 btnCancel.addEventListener ('click' , (event) => {
   event.preventDefault();
@@ -78,8 +86,6 @@ add.addEventListener('click', (event) => {
 
 
 const list = document.querySelector('.js-list');
-
-
 
 const kittenOneImage= "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg";
 const kittenOneName= "Anastacio";
