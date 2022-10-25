@@ -19,6 +19,24 @@ const searchError = document.querySelector ('.js-search-error');
 const btnCancel = document.querySelector ('.js-btn-cancel');
 
 
+const list = document.querySelector('.js-list');
+
+const kittenOneImage= "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg";
+const kittenOneName= "Anastacio";
+const kittenOneRace="British Shorthair";
+const kittenOneDesc= "Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!";
+
+
+const kittenTwoImage= "https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg";
+const kittenTwoName= "Fiona";
+const kittenTwoRace="British Shorthair";
+const kittenTwoDesc="Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!";
+
+const kittenThreeImage= "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg";
+const kittenThreeName="Cielo";
+const kittenThreeRace="British Shorthair";
+const kittenThreeDesc="Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!";
+
 
 
 add.addEventListener('click', (event) => {
@@ -81,31 +99,47 @@ add.addEventListener('click', (event) => {
   event.preventDefault();
 
 })
+
+
 function renderKitten(url, desc, name ,race) {
-  // crear un gato estandar donde metamos los parametros que escriba el usuario .value en cada parte del html que metamos nuevo? 
+  const kitten = `<li class="card">
+  <article>
+    <img
+      class="card_img"
+      src= ${url}
+      alt="gatito"
+    />
+    <h3 class="card_title">${name.toUpperCase()}</h3>
+    <h4 class="card_race">${race}</h4>
+    <p class="card_description">
+      ${desc}
+    </p>
+  </article>
+  </li>`; 
+  return kitten;
+}
+const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
+const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
+const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
+
+
+add.addEventListener('click', addNewKitten);
+function addNewKitten (event){
+  event.preventDefault();
+   const url=inputPhoto.value;
+   const desc=inputDesc.value.toLowerCase();
+   const name=inputName.value.toLowerCase();
+   const race=inputRace.value.toLowerCase();
+
+  const kitten=renderKitten(url, desc, name, race);
+  list.innerHTML+=kitten;
+  
+
 }
 
-function addNewKitten ()
 
 
 
-const list = document.querySelector('.js-list');
-
-const kittenOneImage= "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg";
-const kittenOneName= "Anastacio";
-const kittenOneRace="British Shorthair";
-const kittenOneDesc= "Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!";
-
-
-const kittenTwoImage= "https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg";
-const kittenTwoName= "Fiona";
-const kittenTwoRace="British Shorthair";
-const kittenTwoDesc="Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!";
-
-const kittenThreeImage= "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg";
-const kittenThreeName="Cielo";
-const kittenThreeRace="British Shorthair";
-const kittenThreeDesc="Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!";
 
 
 const input_search_desc = document.querySelector('.js_in_search_desc');
@@ -114,43 +148,9 @@ const descrSearchText = input_search_desc.value;
 
 
 
-const kittenOne = `<li class="card">
-<article>
-  <img
-    class="card_img"
-    src= ${kittenOneImage}
-    alt="gatito"
-  />
-  <h3 class="card_title">${kittenOneName.toUpperCase()}</h3>
-  <h4 class="card_race">${kittenOneRace}</h4>
-  <p class="card_description">
-    ${kittenOneDesc}
-  </p>
-</article>
-</li>`;
 
 
-const kittenTwo = ` <li class="card"> 
-<img class="card_img"
-  src=${kittenTwoImage} alt="gatito" />
-<h3 class="card_title">${kittenTwoName.toUpperCase()}</h3>
-<h4 class="card_race">${kittenTwoRace}</h4>
-<p class="card_description">
-  ${kittenTwoDesc}
-</p>
-</li> `;
 
-
-const kittenThree = ` <li class="card">
-<img class="card_img"
-  src=${kittenThreeImage}
-  alt="gatito" />
-<h3 class="card_title">${kittenThreeName.toUpperCase()}</h3>
-<h4 class="card_race">${kittenThreeRace}</h4>
-<p class="card_description">
-  ${kittenThreeDesc}
-</p>
-</li> `;
 
 
 // list.innerHTML= kittenOne + kittenTwo + kittenThree;
