@@ -54,7 +54,6 @@ function showNewCatForm() {
 function hideNewCatForm() {
   form.classList.add('collapsed');
 }
-
 plus.addEventListener('click',handleClickNewCatForm);
 
 function handleClickNewCatForm(event) {
