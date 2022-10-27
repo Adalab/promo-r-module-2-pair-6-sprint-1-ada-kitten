@@ -17,9 +17,12 @@ const searchDesc = document.querySelector('.js-desc');
 const searchRace = document.querySelector('.js-race');
 const searchError = document.querySelector ('.js-search-error');
 const btnCancel = document.querySelector ('.js-btn-cancel');
-
-
+const input_search_desc = document.querySelector('.js_in_search_desc');
 const list = document.querySelector('.js-list');
+
+
+
+
 
 const kittenOneImage= "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg";
 const kittenOneName= "Anastacio";
@@ -62,7 +65,7 @@ plus.addEventListener('click',handleClickNewCatForm);
 
 
 function renderKitten(url, desc, name ,race) {
-  const kitten = `<li class="card">
+  const kittennew = `<li class="card">
   <article>
     <img
       class="card_img"
@@ -76,7 +79,7 @@ function renderKitten(url, desc, name ,race) {
     </p>
   </article>
   </li>`; 
-  return kitten;
+  return kittennew;
 }
 function addNewKitten (){
   const url=inputPhoto.value;
@@ -87,15 +90,14 @@ function addNewKitten (){
  const kitten=renderKitten(url, desc, name, race);
  list.innerHTML+=kitten;
 }
-const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
-const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
-const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
+
 
 function handleClickAdd (event) {
   event.preventDefault();
   addCheck ();
+  addNewKitten ();
 }
-  
+   
   function addCheck () {
     const valueDesc = inputDesc.value;
     const valuePhoto = inputPhoto.value;
@@ -108,7 +110,7 @@ function handleClickAdd (event) {
       labelMesageError.innerHTML='Debe rellenar todos los valores'
     } else {
       labelMesageError.innerHTML=''
-      addNewKitten ();
+     
     };
 /////con debuger el problema me dice que salta desde el else ////
   }
@@ -121,7 +123,7 @@ add.addEventListener('click', handleClickAdd);
 function handleClickSearch (event) {
   event.preventDefault();
 searchReset ();
-
+filterKitten ();
 }
 
 function searchReset () {
@@ -135,7 +137,27 @@ function searchReset () {
   };
 
 }
+
+function filterKitten () {
+  const descValue = searchDesc.value;
+  const raceValue = searchRace.value;
+
+  if( kittenOneDesc.includes(descrSearchText) ) {
+    list.innerHTML= kittenOne;
+    }
+    
+  if( kittenTwoDesc.includes(descrSearchText) ) {
+    list.innerHTML+= kittenTwo;
+    }
+  if( kittenThreeDesc.includes(descrSearchText) ) {
+      list.innerHTML+= kittenThree;
+    }
+        
+
+}
 search.addEventListener('click', handleClickSearch) 
+
+
 
 
 // boton cancelar //
@@ -157,36 +179,17 @@ btnCancel.addEventListener ('click' , handleClickCancel)
  
 
 
+const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
+const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
+const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
 
 
 
-
-
-
-
-
-
-const input_search_desc = document.querySelector('.js_in_search_desc');
 input_search_desc.value = '';
 const descrSearchText = input_search_desc.value;
 
 
 
-
-
-
-
-
 // list.innerHTML= kittenOne + kittenTwo + kittenThree;
 
-if( kittenOneDesc.includes(descrSearchText) ) {
-  list.innerHTML= kittenOne;
-  }
-  
-if( kittenTwoDesc.includes(descrSearchText) ) {
-  list.innerHTML+= kittenTwo;
-  }
-if( kittenThreeDesc.includes(descrSearchText) ) {
-    list.innerHTML+= kittenThree;
-  }
-      
+
