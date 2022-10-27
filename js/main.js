@@ -38,33 +38,8 @@ const kittenThreeRace="British Shorthair";
 const kittenThreeDesc="Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!";
 
 
+// boton + //
 
-add.addEventListener('click', (event) => {
-  event.preventDefault();
-  const valueDesc = inputDesc.value;
-  const valuePhoto = inputPhoto.value;
-  const valueName = inputName.value;
-  const valueRace = inputRace.value;
-  
-
-  if (valueDesc === '' || valuePhoto === '' || valueName === '') {
-    labelMesageError.innerHTML='Debe rellenar todos los valores'
-  } else {
-    labelMesageError.innerHTML=''
-  };
-});
-
-search.addEventListener('click', (event)  => {
-  event.preventDefault();
-  const descValue = searchDesc.value;
-  const raceValue = searchRace.value;
-
-  if ( descValue === '' || raceValue === '' ){
-    searchError.innerHTML = 'Debe rellenar todos los valores'
-  } else {
-    searchError.innerHTML = '' 
-  };
-});
 
 function showNewCatForm() {
   form.classList.remove('collapsed');
@@ -72,8 +47,6 @@ function showNewCatForm() {
 function hideNewCatForm() {
   form.classList.add('collapsed');
 }
-plus.addEventListener('click',handleClickNewCatForm);
-
 function handleClickNewCatForm(event) {
   event.preventDefault();
   if (form.classList.contains('collapsed')) {
@@ -83,22 +56,9 @@ function handleClickNewCatForm(event) {
   }
 }
 
+plus.addEventListener('click',handleClickNewCatForm);
 
-btnCancel.addEventListener ('click' , (event) => {
-  event.preventDefault();
-  
-  inputDesc.value = ''
-  inputPhoto.value = ''
-  inputName.value = ''
-  inputRace.value = ''
-  form.classList.add('collapsed');
-
-})
-
-add.addEventListener('click', (event) => {
-  event.preventDefault();
-
-})
+//  boton añadir //
 
 
 function renderKitten(url, desc, name ,race) {
@@ -118,24 +78,88 @@ function renderKitten(url, desc, name ,race) {
   </li>`; 
   return kitten;
 }
+function addNewKitten (){
+  const url=inputPhoto.value;
+  const desc=inputDesc.value.toLowerCase();
+  const name=inputName.value.toLowerCase();
+  const race=inputRace.value.toLowerCase();
+
+ const kitten=renderKitten(url, desc, name, race);
+ list.innerHTML+=kitten;
+}
 const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
 const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
 const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
 
-
-add.addEventListener('click', addNewKitten);
-function addNewKitten (event){
+function handleClickAdd (event) {
   event.preventDefault();
-   const url=inputPhoto.value;
-   const desc=inputDesc.value.toLowerCase();
-   const name=inputName.value.toLowerCase();
-   const race=inputRace.value.toLowerCase();
-
-  const kitten=renderKitten(url, desc, name, race);
-  list.innerHTML+=kitten;
+  addCheck ();
+}
   
+  function addCheck () {
+    const valueDesc = inputDesc.value;
+    const valuePhoto = inputPhoto.value;
+    const valueName = inputName.value;
+    const valueRace = inputRace.value;
+    debugger
+
+  
+    if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+      labelMesageError.innerHTML='Debe rellenar todos los valores'
+    } else {
+      labelMesageError.innerHTML=''
+      addNewKitten ();
+    };
+/////con debuger el problema me dice que salta desde el else ////
+  }
+
+add.addEventListener('click', handleClickAdd);
+
+ // boton search //
+
+
+function handleClickSearch (event) {
+  event.preventDefault();
+searchReset ();
 
 }
+
+function searchReset () {
+  const descValue = searchDesc.value;
+  const raceValue = searchRace.value;
+
+  if ( descValue === '' || raceValue === '' ){
+    searchError.innerHTML = 'Debe rellenar todos los valores'
+  } else {
+    searchError.innerHTML = '' 
+  };
+
+}
+search.addEventListener('click', handleClickSearch) 
+
+
+// boton cancelar //
+
+
+function handleClickCancel (event) {
+  event.preventDefault();
+  inputDesc.value = ''
+  inputPhoto.value = ''
+  inputName.value = ''
+  inputRace.value = ''
+  form.classList.add('collapsed');
+}
+
+
+btnCancel.addEventListener ('click' , handleClickCancel) 
+  
+  
+ 
+
+
+
+
+
 
 
 
