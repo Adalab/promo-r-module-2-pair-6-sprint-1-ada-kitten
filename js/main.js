@@ -40,6 +40,9 @@ const kittenThreeName="Cielo";
 const kittenThreeRace="British Shorthair";
 const kittenThreeDesc="Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!";
 
+const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
+const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
+const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
 
 // boton + //
 
@@ -95,7 +98,7 @@ function addNewKitten (){
 function handleClickAdd (event) {
   event.preventDefault();
   addCheck ();
-  addNewKitten ();
+
 }
    
   function addCheck () {
@@ -109,10 +112,11 @@ function handleClickAdd (event) {
     if (valueDesc === '' || valuePhoto === '' || valueName === '') {
       labelMesageError.innerHTML='Debe rellenar todos los valores'
     } else {
-      labelMesageError.innerHTML=''
+      labelMesageError.innerHTML='' ;
+      addNewKitten ();
      
     };
-/////con debuger el problema me dice que salta desde el else ////
+
   }
 
 add.addEventListener('click', handleClickAdd);
@@ -141,6 +145,8 @@ function searchReset () {
 function filterKitten () {
   const descValue = searchDesc.value;
   const raceValue = searchRace.value;
+  input_search_desc.value = '';
+const descrSearchText = input_search_desc.value;
 
   if( kittenOneDesc.includes(descrSearchText) ) {
     list.innerHTML= kittenOne;
@@ -179,14 +185,11 @@ btnCancel.addEventListener ('click' , handleClickCancel)
  
 
 
-const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
-const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
-const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
 
 
 
-input_search_desc.value = '';
-const descrSearchText = input_search_desc.value;
+
+
 
 
 
