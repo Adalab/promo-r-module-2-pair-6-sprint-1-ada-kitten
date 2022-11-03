@@ -106,7 +106,7 @@ function handleClickAdd (event) {
     const valuePhoto = inputPhoto.value;
     const valueName = inputName.value;
     const valueRace = inputRace.value;
-    debugger
+    
 
   
     if (valueDesc === '' || valuePhoto === '' || valueName === '') {
