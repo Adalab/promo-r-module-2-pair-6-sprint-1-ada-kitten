@@ -123,6 +123,7 @@ const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kit
 const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
 
 
+
 add.addEventListener('click', addNewKitten);
 function addNewKitten (event){
   event.preventDefault();
