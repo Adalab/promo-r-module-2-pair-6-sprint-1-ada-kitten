@@ -17,9 +17,12 @@ const searchDesc = document.querySelector('.js-desc');
 const searchRace = document.querySelector('.js-race');
 const searchError = document.querySelector ('.js-search-error');
 const btnCancel = document.querySelector ('.js-btn-cancel');
-
-
+const input_search_desc = document.querySelector('.js_in_search_desc');
 const list = document.querySelector('.js-list');
+
+
+
+
 
 const kittenOneImage= "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg";
 const kittenOneName= "Anastacio";
@@ -37,34 +40,12 @@ const kittenThreeName="Cielo";
 const kittenThreeRace="British Shorthair";
 const kittenThreeDesc="Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!";
 
+const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
+const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
+const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
 
+// boton + //
 
-add.addEventListener('click', (event) => {
-  event.preventDefault();
-  const valueDesc = inputDesc.value;
-  const valuePhoto = inputPhoto.value;
-  const valueName = inputName.value;
-  const valueRace = inputRace.value;
-  
-
-  if (valueDesc === '' || valuePhoto === '' || valueName === '') {
-    labelMesageError.innerHTML='Debe rellenar todos los valores'
-  } else {
-    labelMesageError.innerHTML=''
-  };
-});
-
-search.addEventListener('click', (event)  => {
-  event.preventDefault();
-  const descValue = searchDesc.value;
-  const raceValue = searchRace.value;
-
-  if ( descValue === '' || raceValue === '' ){
-    searchError.innerHTML = 'Debe rellenar todos los valores'
-  } else {
-    searchError.innerHTML = '' 
-  };
-});
 
 function showNewCatForm() {
   form.classList.remove('collapsed');
@@ -72,8 +53,6 @@ function showNewCatForm() {
 function hideNewCatForm() {
   form.classList.add('collapsed');
 }
-plus.addEventListener('click',handleClickNewCatForm);
-
 function handleClickNewCatForm(event) {
   event.preventDefault();
   if (form.classList.contains('collapsed')) {
@@ -83,26 +62,13 @@ function handleClickNewCatForm(event) {
   }
 }
 
+plus.addEventListener('click',handleClickNewCatForm);
 
-btnCancel.addEventListener ('click' , (event) => {
-  event.preventDefault();
-  
-  inputDesc.value = ''
-  inputPhoto.value = ''
-  inputName.value = ''
-  inputRace.value = ''
-  form.classList.add('collapsed');
-
-})
-
-add.addEventListener('click', (event) => {
-  event.preventDefault();
-
-})
+//  boton añadir //
 
 
 function renderKitten(url, desc, name ,race) {
-  const kitten = `<li class="card">
+  const kittennew = `<li class="card">
   <article>
     <img
       class="card_img"
@@ -116,36 +82,109 @@ function renderKitten(url, desc, name ,race) {
     </p>
   </article>
   </li>`; 
-  return kitten;
+  return kittennew;
 }
-const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
-const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
-const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
+function addNewKitten (){
+  const url=inputPhoto.value;
+  const desc=inputDesc.value.toLowerCase();
+  const name=inputName.value.toLowerCase();
+  const race=inputRace.value.toLowerCase();
+
+ const kitten=renderKitten(url, desc, name, race);
+ list.innerHTML+=kitten;
+}
 
 
-
-add.addEventListener('click', addNewKitten);
-function addNewKitten (event){
+function handleClickAdd (event) {
   event.preventDefault();
-   const url=inputPhoto.value;
-   const desc=inputDesc.value.toLowerCase();
-   const name=inputName.value.toLowerCase();
-   const race=inputRace.value.toLowerCase();
+  addCheck ();
 
-  const kitten=renderKitten(url, desc, name, race);
-  list.innerHTML+=kitten;
+}
+   
+  function addCheck () {
+    const valueDesc = inputDesc.value;
+    const valuePhoto = inputPhoto.value;
+    const valueName = inputName.value;
+    const valueRace = inputRace.value;
+    
+
   
+    if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+      labelMesageError.innerHTML='Debe rellenar todos los valores'
+    } else {
+      labelMesageError.innerHTML='' ;
+      addNewKitten ();
+     
+    };
+
+  }
+
+add.addEventListener('click', handleClickAdd);
+
+ // boton search //
+
+
+function handleClickSearch (event) {
+  event.preventDefault();
+searchReset ();
+filterKitten ();
+}
+
+function searchReset () {
+  const descValue = searchDesc.value;
+  const raceValue = searchRace.value;
+
+  if ( descValue === '' || raceValue === '' ){
+    searchError.innerHTML = 'Debe rellenar todos los valores'
+  } else {
+    searchError.innerHTML = '' 
+  };
 
 }
 
-
-
-
-
-
-const input_search_desc = document.querySelector('.js_in_search_desc');
-input_search_desc.value = '';
+function filterKitten () {
+  const descValue = searchDesc.value;
+  const raceValue = searchRace.value;
+  input_search_desc.value = '';
 const descrSearchText = input_search_desc.value;
+
+  if( kittenOneDesc.includes(descrSearchText) ) {
+    list.innerHTML= kittenOne;
+    }
+    
+  if( kittenTwoDesc.includes(descrSearchText) ) {
+    list.innerHTML+= kittenTwo;
+    }
+  if( kittenThreeDesc.includes(descrSearchText) ) {
+      list.innerHTML+= kittenThree;
+    }
+        
+
+}
+search.addEventListener('click', handleClickSearch) 
+
+
+
+
+// boton cancelar //
+
+
+function handleClickCancel (event) {
+  event.preventDefault();
+  inputDesc.value = ''
+  inputPhoto.value = ''
+  inputName.value = ''
+  inputRace.value = ''
+  form.classList.add('collapsed');
+}
+
+
+btnCancel.addEventListener ('click' , handleClickCancel) 
+  
+  
+ 
+
+
 
 
 
@@ -156,14 +195,4 @@ const descrSearchText = input_search_desc.value;
 
 // list.innerHTML= kittenOne + kittenTwo + kittenThree;
 
-if( kittenOneDesc.includes(descrSearchText) ) {
-  list.innerHTML= kittenOne;
-  }
-  
-if( kittenTwoDesc.includes(descrSearchText) ) {
-  list.innerHTML+= kittenTwo;
-  }
-if( kittenThreeDesc.includes(descrSearchText) ) {
-    list.innerHTML+= kittenThree;
-  }
-      
+
